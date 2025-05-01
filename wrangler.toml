@@ -1,0 +1,47 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "catalogo-gpts-pwa"
+main = ".open-next/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "random_id"
+# database_id = "10183848-4cc7-4198-b8c7-1374015ab09c"
+
+# Enable D1 database binding
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "catalogo-gpts-db"
+database_id = "<YOUR_DATABASE_ID>" # Replace with your actual DB ID after creation
+# Use this for local development
+preview_database_id = "local-db"
+
+[vars]
+# Add environment variables here if needed, e.g., JWT_SECRET
+# JWT_SECRET = "your-secret-key"
+
+# Other configurations from the template might be here...
+
+
+# Enable D1 database binding
+[[d1_databases]]
+binding = "DB" # i.e. env.DB
+database_name = "catalogo-gpts-db"
+database_id = "<YOUR_DB_ID>" # Replace with actual DB ID after creation
+preview_database_id = "catalogo-gpts-db-local"
+
+# Environment variables for local development (wrangler dev)
+[vars]
+JWT_SECRET = "your-local-jwt-secret-key-replace-me"
+HOTMART_SECRET = "your-local-hotmart-webhook-secret-replace-me"
+
+# Secrets for production (set via Cloudflare dashboard)
+# [secrets]
+# JWT_SECRET
+# HOTMART_SECRET
+
